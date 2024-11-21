@@ -7,12 +7,13 @@ const {
 
 const { EchoBot } = require('./bot')
 
-const server = express()
-server.use(express.json())
-
 
 const adapter = new CloudAdapter(new ConfigurationBotFrameworkAuthentication());
 const myBot = new EchoBot()
+
+
+const server = express()
+server.use(express.json())
 
 server.post('/api/messages', 
     async (req, res) => {
