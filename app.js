@@ -2,8 +2,7 @@
 const express = require('express')
 
 const {
-    CloudAdapter,
-    ConfigurationBotFrameworkAuthentication,
+    CloudAdapter, ConfigurationBotFrameworkAuthentication,
 } = require('botbuilder')
 
 const { EchoBot } = require('./bot')
@@ -15,11 +14,15 @@ server.use(express.json())
 const adapter = new CloudAdapter(new ConfigurationBotFrameworkAuthentication());
 const myBot = new EchoBot()
 
-server.post('/api/messages', async (req, res) => {
-    console.log(req.body)
-    await adapter.process(req, res, (context) => myBot.run(context));
-})
+server.post('/api/messages', 
+    async (req, res) => {
+        console.log(req.body)
+        await adapter.process(req, res, (context) => myBot.run(context));
+    }
+)
 
-server.listen(process.env.port || process.env.PORT || 3978, () => {
-    console.log(`\n${ server.name } `);
+const port = process.env.PORT || 3978
+
+server.listen(port, () => {
+    console.log(`\n lisenting on ${ port } for bot ${ process.env.MicrosoftAppId }`);
 })
