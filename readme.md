@@ -8,7 +8,7 @@ bot / agent starter
 Configure `.npmrc`
 
 ```bash
-echo "registry=https://pkgs.dev.azure.com/dynamicscrm/OneCRM/_packaging/CopilotSDK-JS-Nightly/npm/registry/ " > .npmrc
+echo "registry=https://pkgs.dev.azure.com/dynamicscrm/OneCRM/_packaging/DPX-Tools-Upstream/npm/registry/" > .npmrc
 ```
 
 Install
@@ -26,9 +26,9 @@ $secretJson = az ad app credential reset --id $appId | ConvertFrom-Json
 ```
 ```
 MicrosoftAppType=SingleTenant
-MicrosoftAppTenantId=69e9b82d-4842-4902-8d1e-abc5b98a55e8
-MicrosoftAppId=2bcdb210-4ed5-4ae8-96c8-33668ad97ed1
-MicrosoftAppPassword=
+tenantId=69e9b82d-4842-4902-8d1e-abc5b98a55e8
+clientId=2bcdb210-4ed5-4ae8-96c8-33668ad97ed1
+clientSecret=
 ```
 Run
 
