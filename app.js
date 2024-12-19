@@ -2,7 +2,9 @@
 const express = require('express')
 
 const {
-    CloudAdapter, loadAuthConfigFromEnv,
+    CloudAdapter, 
+    loadAuthConfigFromEnv,
+    authorizeJWT,
 } = require('@microsoft/agents-bot-hosting')
 
 const { EchoBot } = require('./bot')
@@ -13,11 +15,11 @@ const myBot = new EchoBot()
 
 
 const server = express()
+server.use(authorizeJWT(config))
 server.use(express.json())
 
 server.post('/api/messages', 
     async (req, res) => {
-        console.log(req.body)
         await adapter.process(req, res, (context) => myBot.run(context));
     }
 )
