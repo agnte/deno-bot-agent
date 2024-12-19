@@ -1,4 +1,4 @@
-const { ActivityHandler, MessageFactory } = require('botbuilder')
+const { ActivityHandler, MessageFactory } = require('@microsoft/agents-bot-hosting')
 
 class EchoBot extends ActivityHandler {
     constructor() {
@@ -11,7 +11,7 @@ class EchoBot extends ActivityHandler {
 
         this.onMembersAdded(async (context, next) => {
             const membersAdded = context.activity.membersAdded
-            const welcomeText = 'Hello from CS and welcome!'
+            const welcomeText = 'Hello from the Agents SDK 👌 and welcome!'
             for (let cnt = 0; cnt < membersAdded.length; ++cnt) {
                 if (membersAdded[cnt].id !== context.activity.recipient.id) {
                     await context.sendActivity(MessageFactory.text(welcomeText, welcomeText))

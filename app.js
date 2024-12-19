@@ -2,13 +2,13 @@
 const express = require('express')
 
 const {
-    CloudAdapter, ConfigurationBotFrameworkAuthentication,
-} = require('botbuilder')
+    CloudAdapter, loadAuthConfigFromEnv,
+} = require('@microsoft/agents-bot-hosting')
 
 const { EchoBot } = require('./bot')
 
-
-const adapter = new CloudAdapter(new ConfigurationBotFrameworkAuthentication());
+const config = loadAuthConfigFromEnv()
+const adapter = new CloudAdapter(config);
 const myBot = new EchoBot()
 
 
@@ -25,5 +25,5 @@ server.post('/api/messages',
 const port = process.env.PORT || 3978
 
 server.listen(port, () => {
-    console.log(`\n lisenting on ${ port } for bot ${ process.env.MicrosoftAppId }`);
+    console.log(`\n lisenting on ${ port } for bot ${ process.env.clientId }`);
 })
