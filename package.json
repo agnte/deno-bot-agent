@@ -1,6 +1,7 @@
 {
   "type": "module",
   "scripts": {
+    "lint": "eslint --fix *.js",
     "test-tool": "teamsapptester start",
     "start": "node  app.js",
     "start:deno": "deno run --allow-net --allow-env --allow-read app.js",
