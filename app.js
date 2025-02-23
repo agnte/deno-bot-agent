@@ -2,7 +2,7 @@
 import express, { json } from 'express';
 
 import { CloudAdapter, loadAuthConfigFromEnv, authorizeJWT } from '@microsoft/agents-bot-hosting';
-import {name, version} from '@microsoft/agents-bot-hosting/package.json';
+import pjson from '@microsoft/agents-bot-hosting/package.json' with {type: 'json'};
 import { EchoBot } from './bot.js';
 
 const config = loadAuthConfigFromEnv()
@@ -22,5 +22,6 @@ server.post('/api/messages',
 const port = process.env.PORT || 3978
 
 server.listen(port, () => {
-    console.log(`\n${ name } v${ version } listening on ${ port } for bot ${ process.env.clientId }`);
+    console.log('os', process.platform, 'node', process.versions.node, 'deno', process.versions.deno)
+    console.log(`\n${ pjson.name } v${ pjson.version } listening on ${ port } for bot ${ process.env.clientId }`);
 })
