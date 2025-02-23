@@ -1,6 +1,6 @@
-const { ActivityHandler, MessageFactory } = require('@microsoft/agents-bot-hosting')
+import { ActivityHandler, MessageFactory } from '@microsoft/agents-bot-hosting';
 
-class EchoBot extends ActivityHandler {
+export class EchoBot extends ActivityHandler {
     constructor() {
         super()
         this.onMessage(async (context, next) => {
@@ -21,5 +21,3 @@ class EchoBot extends ActivityHandler {
         })
     }
 }
-
-module.exports.EchoBot = EchoBot

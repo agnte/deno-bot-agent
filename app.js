@@ -1,22 +1,17 @@
 // @ts-check
-const express = require('express')
+import express, { json } from 'express';
 
-const {
-    CloudAdapter, 
-    loadAuthConfigFromEnv,
-    authorizeJWT,
-} = require('@microsoft/agents-bot-hosting')
-
-const { EchoBot } = require('./bot')
+import { CloudAdapter, loadAuthConfigFromEnv, authorizeJWT } from '@microsoft/agents-bot-hosting';
+import {name, version} from '@microsoft/agents-bot-hosting/package.json';
+import { EchoBot } from './bot.js';
 
 const config = loadAuthConfigFromEnv()
 const adapter = new CloudAdapter(config);
 const myBot = new EchoBot()
 
-
 const server = express()
 server.use(authorizeJWT(config))
-server.use(express.json())
+server.use(json())
 
 server.post('/api/messages', 
     async (req, res) => {
@@ -27,5 +22,5 @@ server.post('/api/messages',
 const port = process.env.PORT || 3978
 
 server.listen(port, () => {
-    console.log(`\n lisenting on ${ port } for bot ${ process.env.clientId }`);
+    console.log(`\n${ name } v${ version } listening on ${ port } for bot ${ process.env.clientId }`);
 })
